@@ -36,7 +36,7 @@ class CreateViewController: UIViewController {
     }()
     
     private lazy var buttonCreate: UIButton = {
-        let button = ActionButton.create(title: Text.Auth.Create.create, action: #selector(alertCreateAccount), target: self)
+        let button = ActionButton.create(title: Text.Auth.Create.create, action: #selector(createAccountAction), target: self)
         return button
     }()
     
@@ -110,10 +110,10 @@ class CreateViewController: UIViewController {
     }
     
     func setupTapGesture() {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-            view.addGestureRecognizer(tapGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
-        
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -123,60 +123,32 @@ class CreateViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
-
-    @objc func alertCreateAccount() {
-        let alert = UIAlertController(title: Text.Auth.Create.alertTitle, message: Text.Auth.Create.message, preferredStyle: .alert)
-        
-        let confirmAction = UIAlertAction(title: Text.Auth.Create.close, style: .default) { (_) in
-            self.goToLoginScreen()
- 
-            //Aqui precisei do GPT MESMO!
-            if let createViewControllerIndex = self.navigationController?.viewControllers.firstIndex(where: { $0 is CreateViewController }) {
-                self.navigationController?.viewControllers.remove(at: createViewControllerIndex)
-            }
+    
+    @objc func createAccountAction() {
+        for view in self.view.subviews {
+            view.isHidden = true
         }
-        alert.addAction(confirmAction)
-        self.present(alert, animated: true, completion: nil)
+        
+        let loadingIndicator = LoadingIndicator.create()
+        loadingIndicator.startAnimating()
+        self.view.addSubview(loadingIndicator)
+        loadingIndicator.center = self.view.center
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            loadingIndicator.stopAnimating()
+            
+            let alert = UIAlertController(title: Text.Auth.Create.alertTitle, message: Text.Auth.Create.message, preferredStyle: .alert)
+            
+            let confirmAction = UIAlertAction(title: Text.Auth.Create.close, style: .default) { (_) in
+                self.goToLoginScreen()
+                
+                if let createViewControllerIndex = self.navigationController?.viewControllers.firstIndex(where: { $0 is CreateViewController }) {
+                    self.navigationController?.viewControllers.remove(at: createViewControllerIndex)
+                }
+            }
+            alert.addAction(confirmAction)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
-
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-struct UIViewControllerPreview<CreateViewController: UIViewController>: UIViewControllerRepresentable {
-    let viewController: CreateViewController
-
-    init(_ builder: @escaping () -> CreateViewController) {
-        viewController = builder()
-    }
-
-    // MARK: - UIViewControllerRepresentable
-    func makeUIViewController(context: Context) -> CreateViewController {
-        viewController
-    }
-
-    func updateUIViewController(_ uiViewController: CreateViewController, context: UIViewControllerRepresentableContext<UIViewControllerPreview<CreateViewController>>) {
-        return
-    }
-}
-#endif
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-let deviceNames: [String] = [
-    "iPhone 11 Pro Max",
-]
-
-@available(iOS 15.0, *)
-struct ViewController_Preview: PreviewProvider {
-  static var previews: some View {
-    ForEach(deviceNames, id: \.self) { deviceName in
-      UIViewControllerPreview {
-        CreateViewController()
-      }.previewDevice(PreviewDevice(rawValue: deviceName))
-        .previewDisplayName(deviceName)
-    }
-  }
-}
-#endif

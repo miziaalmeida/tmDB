@@ -71,6 +71,17 @@ class TextField {
     }
 }
 
+//MARK: - LoadingIndicator
+
+class LoadingIndicator {
+    static func create() -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.hidesWhenStopped = true
+        return indicator
+    }
+}
+
+
 //MARK: - Magic Numbers
 enum ButtonLayoutConstants {
     static let logoButtonSize = CGSize(width: 83, height: 83)
