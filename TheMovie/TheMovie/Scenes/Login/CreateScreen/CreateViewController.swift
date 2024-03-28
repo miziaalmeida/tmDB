@@ -130,6 +130,7 @@ class CreateViewController: UIViewController {
         }
         
         let loadingIndicator = LoadingIndicator.create()
+        loadingIndicator.color = .white
         loadingIndicator.startAnimating()
         self.view.addSubview(loadingIndicator)
         loadingIndicator.center = self.view.center
