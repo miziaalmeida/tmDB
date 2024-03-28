@@ -5,11 +5,16 @@
   Created by Jeiel Lima on 19/03/24.
   
 */
-//Mark: Login -
+//Mark: MainScreen -
 "Sign in with social accounts" = "Faça login com contas sociais";
 "or" = "ou";
 "Sign In" = "Entrar";
 "Create a Free Account" = "Criar uma conta gratuita";
+
+//MARK: Login -
+"Welcome Back!" = "Bem-vindo(a) de volta!";
+"Login to continue" = "Logue para continuar";
+"Forgot my password" = "Esqueci minha senha";
 
 // Mark: Create Account -
 "Create Account" = "Criar conta";
@@ -24,3 +29,4 @@
 "Sucess!" = "Successo!";
 "User registered successfully" = "Usuário cadastrado com sucesso";
 "Close" = "Fechar";
+

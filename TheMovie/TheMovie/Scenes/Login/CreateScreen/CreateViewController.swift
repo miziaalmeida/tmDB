@@ -31,7 +31,6 @@ class CreateViewController: UIViewController {
     
     private lazy var confirmPassTextField: UITextField = {
         let textField = TextField.createTf(placeholder: Text.Auth.Create.confirm, isSecure: true)
-        textField.isSecureTextEntry = true
         return textField
     }()
     

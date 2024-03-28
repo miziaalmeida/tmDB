@@ -18,6 +18,12 @@ struct Text {
                 "Sign In", comment:"Localizable")
             static let createButton = NSLocalizedString(
                 "Create a Free Account", comment:"Localizable")
+            static let welcome = NSLocalizedString(
+                "Welcome Back!", comment:"Localizable")
+            static let forgot = NSLocalizedString(
+                "Forgot my password", comment:"Localizable")
+            static let toContinue = NSLocalizedString(
+                "Login to continue", comment:"Localizable")
         }
     
         struct Create {
