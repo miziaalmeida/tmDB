@@ -5,8 +5,22 @@
   Created by Jeiel Lima on 19/03/24.
   
 */
-
+//Mark: Login -
 "Sign in with social accounts" = "Faça login com contas sociais";
 "or" = "ou";
 "Sign In" = "Entrar";
 "Create a Free Account" = "Criar uma conta gratuita";
+
+// Mark: Create Account -
+"Create Account" = "Criar conta";
+"name" = "nome";
+"email" = "e-mail";
+"password" = "senha";
+"confirm password" = "confirmar senha";
+"Create" = "Criar";
+"Login" = "Logar";
+
+    // Alert
+"Sucess!" = "Successo!";
+"User registered successfully" = "Usuário cadastrado com sucesso";
+"Close" = "Fechar";

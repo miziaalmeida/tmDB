@@ -25,8 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                let loginViewController = LoginViewController()
-                navigationController.setViewControllers([loginViewController], animated: true)
+                let mainViewController = MainViewController()
+                navigationController.setViewControllers([mainViewController], animated: true)
             }
         }
     
