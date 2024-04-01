@@ -101,6 +101,7 @@ class MainViewController: UIViewController {
     @objc func goToCreateView() {
         let vc = CreateViewController()
         navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     @objc func goToLoginScreen() {

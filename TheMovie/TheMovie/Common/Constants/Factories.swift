@@ -92,11 +92,13 @@ enum ButtonLayoutConstants {
 
 enum LayoutConstants {
     static let topLabelSpacing: CGFloat = 80
+    static let bottomLabelSpacing: CGFloat = 15
     static let textFieldSpacing: CGFloat = 40
     static let trailingMargin: CGFloat = -20
     static let leadingMargin: CGFloat = 20
     static let buttonCorner: CGFloat = 10
     static let labelSize: CGFloat = 23
+    static let labelMinusSize: CGFloat = 15
     static let textFieldSize: CGFloat = 18
     static let textFieldBottomSize: CGFloat = 1.5
 }
