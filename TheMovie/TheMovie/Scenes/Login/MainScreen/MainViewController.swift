@@ -66,11 +66,11 @@ class MainViewController: UIViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            topLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            topLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: LayoutConstants.topLabelSpacing),
             
             googleButton.widthAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.width),
             googleButton.heightAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.height),
-            googleButton.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 50),
+            googleButton.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: ButtonLayoutConstants.logoButtonTopSpacing),
             googleButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: ButtonLayoutConstants.buttonSpacing),
             
             appleButton.widthAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.width),
@@ -84,11 +84,11 @@ class MainViewController: UIViewController {
             faceButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -ButtonLayoutConstants.buttonSpacing),
             
             lowerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            lowerLabel.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: 60),
+            lowerLabel.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: LayoutConstants.midLabelSpacing),
             
             createButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: LayoutConstants.leadingMargin),
             createButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: LayoutConstants.trailingMargin),
-            createButton.topAnchor.constraint(equalTo: lowerLabel.bottomAnchor, constant: 60),
+            createButton.topAnchor.constraint(equalTo: lowerLabel.bottomAnchor, constant: LayoutConstants.midLabelSpacing),
             createButton.heightAnchor.constraint(equalToConstant: ButtonLayoutConstants.buttonHeight),
             
             signButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: LayoutConstants.leadingMargin),
