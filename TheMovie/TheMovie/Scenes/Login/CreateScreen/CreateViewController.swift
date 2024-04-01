@@ -31,7 +31,6 @@ class CreateViewController: UIViewController {
     
     private lazy var confirmPassTextField: UITextField = {
         let textField = TextField.createTf(placeholder: Text.Auth.Create.confirm, isSecure: true)
-        textField.isSecureTextEntry = true
         return textField
     }()
     
@@ -49,12 +48,12 @@ class CreateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = ColorConstants.backColor
         setupView()
         setupTapGesture()
     }
     
     func setupView() {
+        view.backgroundColor = ColorConstants.backColor
         setupViewHierarchy()
         setupConstraints()
     }
