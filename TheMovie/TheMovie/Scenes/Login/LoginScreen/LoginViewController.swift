@@ -52,14 +52,14 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = ColorConstants.backColor
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationController?.navigationBar.tintColor = .white
         setupView()
         setupTapGesture()
     }
     
     func setupView() {
+        view.backgroundColor = ColorConstants.backColor
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.tintColor = .white
         setupViewHierarchy()
         setupConstraints()
     }
@@ -112,7 +112,7 @@ class LoginViewController: UIViewController {
             buttonCreate.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: LayoutConstants.trailingMargin),
         ])
     }
-    
+    //TODO: Implementação em outro PR -
     @objc func forgotPassword() {
         
     }

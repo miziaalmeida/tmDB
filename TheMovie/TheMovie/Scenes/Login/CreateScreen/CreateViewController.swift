@@ -48,12 +48,12 @@ class CreateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = ColorConstants.backColor
         setupView()
         setupTapGesture()
     }
     
     func setupView() {
+        view.backgroundColor = ColorConstants.backColor
         setupViewHierarchy()
         setupConstraints()
     }
