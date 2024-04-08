@@ -7,14 +7,13 @@ import SwiftUI
 // MARK: - LottieView
 
 /// A wrapper which exposes Lottie's `LottieAnimationView` to SwiftUI
-@available(iOS 13.0, tvOS 13.0, macOS 10.15, *)
 public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
 
   // MARK: Lifecycle
 
   /// Creates a `LottieView` that displays the given animation
   public init(animation: LottieAnimation?) where Placeholder == EmptyView {
-    _animationSource = State(initialValue: animation.map(LottieAnimationSource.lottieAnimation))
+    localAnimation = animation.map(LottieAnimationSource.lottieAnimation)
     placeholder = nil
   }
 
@@ -29,7 +28,7 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
   /// }
   /// ```
   public init(dotLottieFile: DotLottieFile?) where Placeholder == EmptyView {
-    _animationSource = State(initialValue: dotLottieFile.map(LottieAnimationSource.dotLottieFile))
+    localAnimation = dotLottieFile.map(LottieAnimationSource.dotLottieFile)
     placeholder = nil
   }
 
@@ -107,9 +106,9 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
     _ loadAnimation: @escaping () async throws -> LottieAnimationSource?,
     @ViewBuilder placeholder: @escaping () -> Placeholder)
   {
+    localAnimation = nil
     self.loadAnimation = loadAnimation
     self.placeholder = placeholder
-    _animationSource = State(initialValue: nil)
   }
 
   // MARK: Public
@@ -454,7 +453,8 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
 
   // MARK: Private
 
-  @State private var animationSource: LottieAnimationSource?
+  private let localAnimation: LottieAnimationSource?
+  @State private var remoteAnimation: LottieAnimationSource?
   private var playbackMode: LottiePlaybackMode?
   private var animationSpeed: Double?
   private var reloadAnimationTrigger: AnyEquatable?
@@ -474,12 +474,16 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
     imageProvider: AnimationImageProvider,
     imageProvidersAreEqual: (AnimationImageProvider, AnimationImageProvider) -> Bool)?
 
+  private var animationSource: LottieAnimationSource? {
+    localAnimation ?? remoteAnimation
+  }
+
   private func loadAnimationIfNecessary() {
     guard let loadAnimation else { return }
 
     Task {
       do {
-        animationSource = try await loadAnimation()
+        remoteAnimation = try await loadAnimation()
       } catch {
         logger.warn("Failed to load asynchronous Lottie animation with error: \(error)")
       }
@@ -490,7 +494,7 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
     guard loadAnimation != nil else { return }
 
     if showPlaceholderWhileReloading {
-      animationSource = nil
+      remoteAnimation = nil
     }
 
     loadAnimationIfNecessary()
@@ -564,7 +568,6 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
   }
 }
 
-@available(iOS 13.0, tvOS 13.0, macOS 10.15, *)
 extension View {
 
   /// The `.overlay` modifier that uses a `ViewBuilder` is available in iOS 15+, this helper function helps us to use the same API in older OSs
