@@ -1,4 +1,5 @@
 import UIKit
+import GoogleSignIn
 
 class MainViewController: UIViewController {
     
@@ -10,6 +11,7 @@ class MainViewController: UIViewController {
     lazy var googleButton: UIButton = {
         let button = SocialButton.create()
         button.setImage(UIImage(named: Text.Image.googleLogo), for: .normal)
+        button.addTarget(self, action: #selector(btnGoogleSingInDidTap(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -108,4 +110,25 @@ class MainViewController: UIViewController {
         let vc = LoginViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @objc func btnGoogleSingInDidTap(_ sender: Any) {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            if let error = error {
+                print("Error signing in with Google: \(error.localizedDescription)")
+                return
+            }
+
+            // Verifica se a autenticação foi bem-sucedida
+            guard let signInResult = signInResult else { return }
+            let user = signInResult.user
+
+            let emailAddress = user.profile?.email
+            let fullName = user.profile?.name
+            let familyName = user.profile?.familyName
+            let profilePicUrl = user.profile?.imageURL(withDimension: 320)
+
+            // Atualiza a interface do usuário com os dados do usuário
+        }
+    }
+
 }
