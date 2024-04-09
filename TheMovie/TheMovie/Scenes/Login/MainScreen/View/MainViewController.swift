@@ -1,7 +1,8 @@
 import UIKit
-import GoogleSignIn
 
 class MainViewController: UIViewController {
+    
+    private let viewModel = MainViewModel()
     
     lazy var topLabel: UILabel = {
         let label = TextLabel.createLabel(text: Text.Auth.Login.socialSignIn)
@@ -103,7 +104,6 @@ class MainViewController: UIViewController {
     @objc func goToCreateView() {
         let vc = CreateViewController()
         navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     @objc func goToLoginScreen() {
@@ -111,24 +111,22 @@ class MainViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func loginSuccessful(with user: User) {
+        let vc = HomeViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc func btnGoogleSingInDidTap(_ sender: Any) {
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+        viewModel.loginWithGoogle(presentingViewController: self) { [weak self] user, error in
+            guard let self = self else { return }
             if let error = error {
                 print("Error signing in with Google: \(error.localizedDescription)")
                 return
             }
-
-            // Verifica se a autenticação foi bem-sucedida
-            guard let signInResult = signInResult else { return }
-            let user = signInResult.user
-
-            let emailAddress = user.profile?.email
-            let fullName = user.profile?.name
-            let familyName = user.profile?.familyName
-            let profilePicUrl = user.profile?.imageURL(withDimension: 320)
-
-            // Atualiza a interface do usuário com os dados do usuário
+            
+            if let user = user {
+                self.loginSuccessful(with: user)
+            }
         }
     }
-
 }
