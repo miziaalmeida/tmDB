@@ -11,3 +11,8 @@ struct User {
     let username: String
     let email: String
 }
+
+enum LoginError: Error {
+        case cancelled
+        case noAccessToken
+    }

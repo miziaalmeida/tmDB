@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     lazy var googleButton: UIButton = {
         let button = SocialButton.create()
         button.setImage(UIImage(named: Text.Image.googleLogo), for: .normal)
-        button.addTarget(self, action: #selector(btnGoogleSingInDidTap(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(btnGoogleSingInDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -25,6 +25,7 @@ class MainViewController: UIViewController {
     lazy var faceButton: UIButton = {
         let button = SocialButton.create()
         button.setImage(UIImage(named: Text.Image.facebookLogo), for: .normal)
+        button.addTarget(self, action: #selector(btnFacebookSignInDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -124,6 +125,19 @@ class MainViewController: UIViewController {
                 return
             }
             
+            if let user = user {
+                self.loginSuccessful(with: user)
+            }
+        }
+    }
+    
+    @objc func btnFacebookSignInDidTap(_ sender: Any) {
+        viewModel.loginWithFacebook { [weak self] user, error in
+            guard let self = self else { return }
+            if let error = error {
+                print("Error signing in with Facebook: \(error.localizedDescription)")
+                return
+            }
             if let user = user {
                 self.loginSuccessful(with: user)
             }

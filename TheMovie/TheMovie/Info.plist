@@ -2,16 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <!-- Google -->
     <key>GIDClientID</key>
     <string>533422057315-hghih7ok6hboge2efv3cve49rppf1eki.apps.googleusercontent.com</string>
     <key>CFBundleURLTypes</key>
     <array>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>com.googleusercontent.apps.533422057315-hghih7ok6hboge2efv3cve49rppf1eki</string>
-        </array>
-      </dict>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.533422057315-hghih7ok6hboge2efv3cve49rppf1eki</string>
+            </array>
+        </dict>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb1936309976825155</string>
+            </array>
+        </dict>
+
     </array>
     <key>UIApplicationSceneManifest</key>
     <dict>
@@ -30,5 +38,12 @@
             </array>
         </dict>
     </dict>
+    <!-- Facebook.config -->
+    <key>FacebookAppID</key>
+    <string>1936309976825155</string>
+    <key>FacebookClientToken</key>
+    <string>EAAbhEExXZCUMBO3E4eN8vKRLizvw8OZCyqTiFgTlAZBP63YfhEGjK898BKAWqdbCQ3GbjF9STieMaWmaSw7obipuZB1HEOnCduZBu9BomaEJC8AFWebZCey0IRGJftTZAZA5OylvL7v1UvTx4g1k74oyXkeT6CC4nD3KycIMSiAZBlz74ZBxbIXZBTgo5k6hyEkvNQf8kwZAco7XT4wKeIZB6wqLqiHNxmsEp73Gd4jgqPMlRrOfTp1dECDOiyLDepd1HsUCWYqZCaZBQZDZD</string>
+    <key>FacebookDisplayName</key>
+    <string>TheMovie</string>
 </dict>
 </plist>

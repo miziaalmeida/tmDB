@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleSignIn
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,8 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           // Show the app's signed-in state.
         }
       }
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
       return true
     }
+    
+    
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
