@@ -96,7 +96,7 @@ class MainViewController: UIViewController {
         viewModel.loginWithGoogle(presentingViewController: self) { [weak self] user, error in
             guard let self = self else { return }
             if let error = error {
-                print("Error signing in with Google: \(error.localizedDescription)")
+                print(Text.Error.googleError + error.localizedDescription)
                 return
             }
             

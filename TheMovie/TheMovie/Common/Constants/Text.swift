@@ -55,4 +55,8 @@ struct Text {
         static let appleLogo = "apple_logo"
         static let facebookLogo = "facebook_logo"
     }
+    
+    struct Error {
+        static let googleError = "Error signing in with Google: "
+    }
 }
