@@ -16,19 +16,6 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    lazy var appleButton: UIButton = {
-        let button = SocialButton.create()
-        button.setImage(UIImage(named: Text.Image.appleLogo), for: .normal)
-        return button
-    }()
-    
-    lazy var faceButton: UIButton = {
-        let button = SocialButton.create()
-        button.setImage(UIImage(named: Text.Image.facebookLogo), for: .normal)
-        button.addTarget(self, action: #selector(btnFacebookSignInDidTap), for: .touchUpInside)
-        return button
-    }()
-    
     lazy var lowerLabel: UILabel = {
         let label = TextLabel.createLabel(text: Text.Auth.Login.or)
         return label
@@ -60,8 +47,6 @@ class MainViewController: UIViewController {
     private func setupViewHierarchy() {
         view.addSubview(topLabel)
         view.addSubview(googleButton)
-        view.addSubview(appleButton)
-        view.addSubview(faceButton)
         view.addSubview(lowerLabel)
         view.addSubview(createButton)
         view.addSubview(signButton)
@@ -75,17 +60,7 @@ class MainViewController: UIViewController {
             googleButton.widthAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.width),
             googleButton.heightAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.height),
             googleButton.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: ButtonLayoutConstants.logoButtonTopSpacing),
-            googleButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: ButtonLayoutConstants.buttonSpacing),
-            
-            appleButton.widthAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.width),
-            appleButton.heightAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.height),
-            appleButton.centerYAnchor.constraint(equalTo: googleButton.centerYAnchor),
-            appleButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            faceButton.widthAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.width),
-            faceButton.heightAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.height),
-            faceButton.centerYAnchor.constraint(equalTo: googleButton.centerYAnchor),
-            faceButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -ButtonLayoutConstants.buttonSpacing),
+            googleButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             lowerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             lowerLabel.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: LayoutConstants.midLabelSpacing),
@@ -125,19 +100,6 @@ class MainViewController: UIViewController {
                 return
             }
             
-            if let user = user {
-                self.loginSuccessful(with: user)
-            }
-        }
-    }
-    
-    @objc func btnFacebookSignInDidTap(_ sender: Any) {
-        viewModel.loginWithFacebook { [weak self] user, error in
-            guard let self = self else { return }
-            if let error = error {
-                print("Error signing in with Facebook: \(error.localizedDescription)")
-                return
-            }
             if let user = user {
                 self.loginSuccessful(with: user)
             }
