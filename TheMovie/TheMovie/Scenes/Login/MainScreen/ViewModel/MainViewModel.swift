@@ -8,7 +8,27 @@
 import Foundation
 import GoogleSignIn
 
-class MainViewModel {
+protocol MainViewModelProtocol: AnyObject {
+    func loginWithGoogle(presentingViewController: UIViewController, completion: @escaping (User?, Error?) -> Void)
+}
+
+class MainViewModel: MainViewModelProtocol {
+    private let service: MainServiceProtocol
+    
+    init(service: MainServiceProtocol) {
+        self.service = service
+    }
+    
+    func loginWithGoogle(presentingViewController: UIViewController, completion: @escaping (User?, (any Error)?) -> Void) {
+        // a iomplemtacao q eu precisar
+    }
+}
+
+protocol MainServiceProtocol: MainService {
+    func loginWithGoogle(presentingViewController: UIViewController, completion: @escaping (User?, Error?) -> Void)
+}
+
+class MainService: MainServiceProtocol {
     func loginWithGoogle(presentingViewController: UIViewController, completion: @escaping (User?, Error?) -> Void) {
         GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { signInResult, error in
             if let error = error {
@@ -25,4 +45,3 @@ class MainViewModel {
         }
     }
 }
-

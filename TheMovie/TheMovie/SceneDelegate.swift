@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                let mainViewController = MainViewController()
+                let mainViewController = FactoryExample.makeController()
                 navigationController.setViewControllers([mainViewController], animated: true)
             }
         }
@@ -57,7 +57,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 
+enum FactoryExample {
+    static func makeController() -> UIViewController {
+        let service = MainService()
+        let viewModel = MainViewModel(service: service)
+        let controller = MainViewController(viewModel: viewModel)
+        let navigationController = UINavigationController(rootViewController: controller)
+        return controller
+    }
+}

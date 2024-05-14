@@ -2,7 +2,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    private let viewModel = MainViewModel()
+    private let viewModel: MainViewModelProtocol
     
     lazy var topLabel: UILabel = {
         let label = TextLabel.createLabel(text: Text.Auth.Login.socialSignIn)
@@ -42,6 +42,16 @@ class MainViewController: UIViewController {
         let button = ActionButton.create(title: Text.Auth.Login.btnSignIn, action: #selector(goToLoginScreen), target: self)
         return button
     }()
+    
+    
+    init(viewModel: MainViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
