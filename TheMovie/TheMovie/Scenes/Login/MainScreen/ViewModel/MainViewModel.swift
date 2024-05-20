@@ -7,6 +7,7 @@
 
 import Foundation
 import GoogleSignIn
+import FBSDKLoginKit
 
 class MainViewModel {
     func loginWithGoogle(presentingViewController: UIViewController, completion: @escaping (User?, Error?) -> Void) {
@@ -25,4 +26,3 @@ class MainViewModel {
         }
     }
 }
-

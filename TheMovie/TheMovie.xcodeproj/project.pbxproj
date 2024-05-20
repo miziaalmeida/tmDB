@@ -20,6 +20,7 @@
 		6F77FEEE2B99039E000CCE73 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F77FEED2B99039E000CCE73 /* MainViewController.swift */; };
 		6F85D19A2BC5B7D600897707 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F85D1992BC5B7D600897707 /* MainViewModel.swift */; };
 		6F85D19E2BC5B8F300897707 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F85D19D2BC5B8F300897707 /* MainModel.swift */; };
+		6F85D1A22BC5D9CD00897707 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 6F85D1A12BC5D9CD00897707 /* FacebookLogin */; };
 		6FBB5C212BB37D9C00451CA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBB5C202BB37D9C00451CA4 /* LoginViewController.swift */; };
 		6FDF17332BA4E3EE00F08F2D /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDF17322BA4E3EE00F08F2D /* Text.swift */; };
 		6FDF17352BA4EAF200F08F2D /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDF17342BA4EAF200F08F2D /* Factories.swift */; };
@@ -75,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F85D1A22BC5D9CD00897707 /* FacebookLogin in Frameworks */,
 				6F1C77FE2BC573ED00B41BA0 /* GoogleSignInSwift in Frameworks */,
 				95A1CF881352A733C6EE3A30 /* Pods_TheMovie.framework in Frameworks */,
 				6F1C77FC2BC573ED00B41BA0 /* GoogleSignIn in Frameworks */,
@@ -319,6 +321,7 @@
 			packageProductDependencies = (
 				6F1C77FB2BC573ED00B41BA0 /* GoogleSignIn */,
 				6F1C77FD2BC573ED00B41BA0 /* GoogleSignInSwift */,
+				6F85D1A12BC5D9CD00897707 /* FacebookLogin */,
 			);
 			productName = TheMovie;
 			productReference = 6F77FEE62B99039E000CCE73 /* TheMovie.app */;
@@ -355,6 +358,7 @@
 			mainGroup = 6F77FEDD2B99039E000CCE73;
 			packageReferences = (
 				6F1C77FA2BC573ED00B41BA0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				6F85D1A02BC5D9CD00897707 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 6F77FEE72B99039E000CCE73 /* Products */;
 			projectDirPath = "";
@@ -651,8 +655,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NK293MX23U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TheMovie/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -666,6 +672,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeiellima.TheMovie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -678,8 +685,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NK293MX23U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TheMovie/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -693,6 +702,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeiellima.TheMovie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -740,6 +750,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		6F85D1A02BC5D9CD00897707 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -752,6 +770,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6F1C77FA2BC573ED00B41BA0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		6F85D1A12BC5D9CD00897707 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F85D1A02BC5D9CD00897707 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
