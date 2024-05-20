@@ -2,7 +2,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    private let viewModel = MainViewModel()
+    private var viewModel: MainViewModel!
     
     lazy var topLabel: UILabel = {
         let label = TextLabel.createLabel(text: Text.Auth.Login.socialSignIn)
@@ -33,6 +33,8 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let authService = GoogleAuthService()
+        viewModel = MainViewModel(authService: authService)
         setupView()
     }
     

@@ -30,3 +30,6 @@
 "User registered successfully" = "Usuário cadastrado com sucesso";
 "Close" = "Fechar";
 
+//Mark: Error
+"Failed to sign in with Google." = "Falha ao fazer login com o Google.";
+
