@@ -51,9 +51,7 @@ struct Text {
     }
     
     struct Image {
-        static let googleLogo = "google_logo"
-        static let appleLogo = "apple_logo"
-        static let facebookLogo = "facebook_logo"
+        static let googleSign = "google_sign"
     }
     
     struct Error {

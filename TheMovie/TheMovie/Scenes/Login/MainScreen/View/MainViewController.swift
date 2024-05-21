@@ -11,7 +11,8 @@ class MainViewController: UIViewController {
     
     lazy var googleButton: UIButton = {
         let button = SocialButton.create()
-        button.setImage(UIImage(named: Text.Image.googleLogo), for: .normal)
+        button.backgroundColor = .clear
+        button.setImage(UIImage(named: Text.Image.googleSign), for: .normal)
         button.addTarget(self, action: #selector(btnGoogleSingInDidTap), for: .touchUpInside)
         return button
     }()

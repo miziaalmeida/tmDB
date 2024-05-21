@@ -84,7 +84,7 @@ class LoadingIndicator {
 
 //MARK: - Magic Numbers
 enum ButtonLayoutConstants {
-    static let logoButtonSize = CGSize(width: 83, height: 83)
+    static let logoButtonSize = CGSize(width: 273, height: 70)
     static let logoButtonTopSpacing : CGFloat = 50
     static let buttonSpacing: CGFloat = 30
     static let buttonHeight: CGFloat = 60
