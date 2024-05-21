@@ -6,7 +6,7 @@
   
 */
 //Mark: MainScreen -
-"Sign in with social accounts" = "Faça login com contas sociais";
+"Sign in with social account" = "Faça login com conta social";
 "or" = "ou";
 "Sign In" = "Entrar";
 "Create a Free Account" = "Criar uma conta gratuita";
@@ -29,4 +29,7 @@
 "Sucess!" = "Successo!";
 "User registered successfully" = "Usuário cadastrado com sucesso";
 "Close" = "Fechar";
+
+//Mark: Error
+"Failed to sign in with Google." = "Falha ao fazer login com o Google.";
 

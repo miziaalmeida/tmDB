@@ -2,6 +2,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    private var viewModel: MainViewModel!
+    
     lazy var topLabel: UILabel = {
         let label = TextLabel.createLabel(text: Text.Auth.Login.socialSignIn)
         return label
@@ -9,19 +11,9 @@ class MainViewController: UIViewController {
     
     lazy var googleButton: UIButton = {
         let button = SocialButton.create()
-        button.setImage(UIImage(named: Text.Image.googleLogo), for: .normal)
-        return button
-    }()
-    
-    lazy var appleButton: UIButton = {
-        let button = SocialButton.create()
-        button.setImage(UIImage(named: Text.Image.appleLogo), for: .normal)
-        return button
-    }()
-    
-    lazy var faceButton: UIButton = {
-        let button = SocialButton.create()
-        button.setImage(UIImage(named: Text.Image.facebookLogo), for: .normal)
+        button.backgroundColor = .clear
+        button.setImage(UIImage(named: Text.Image.googleSign), for: .normal)
+        button.addTarget(self, action: #selector(btnGoogleSingInDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -42,6 +34,8 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let authService = GoogleAuthService()
+        viewModel = MainViewModel(authService: authService)
         setupView()
     }
     
@@ -56,8 +50,6 @@ class MainViewController: UIViewController {
     private func setupViewHierarchy() {
         view.addSubview(topLabel)
         view.addSubview(googleButton)
-        view.addSubview(appleButton)
-        view.addSubview(faceButton)
         view.addSubview(lowerLabel)
         view.addSubview(createButton)
         view.addSubview(signButton)
@@ -71,17 +63,7 @@ class MainViewController: UIViewController {
             googleButton.widthAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.width),
             googleButton.heightAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.height),
             googleButton.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: ButtonLayoutConstants.logoButtonTopSpacing),
-            googleButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: ButtonLayoutConstants.buttonSpacing),
-            
-            appleButton.widthAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.width),
-            appleButton.heightAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.height),
-            appleButton.centerYAnchor.constraint(equalTo: googleButton.centerYAnchor),
-            appleButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            faceButton.widthAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.width),
-            faceButton.heightAnchor.constraint(equalToConstant: ButtonLayoutConstants.logoButtonSize.height),
-            faceButton.centerYAnchor.constraint(equalTo: googleButton.centerYAnchor),
-            faceButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -ButtonLayoutConstants.buttonSpacing),
+            googleButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             lowerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             lowerLabel.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: LayoutConstants.midLabelSpacing),
@@ -101,11 +83,29 @@ class MainViewController: UIViewController {
     @objc func goToCreateView() {
         let vc = CreateViewController()
         navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     @objc func goToLoginScreen() {
         let vc = LoginViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func loginSuccessful(with user: User) {
+        let vc = HomeViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func btnGoogleSingInDidTap(_ sender: Any) {
+        viewModel.loginWithGoogle(presentingViewController: self) { [weak self] user, error in
+            guard let self = self else { return }
+            if let error = error {
+                print(Text.Error.googleError + error.localizedDescription)
+                return
+            }
+            
+            if let user = user {
+                self.loginSuccessful(with: user)
+            }
+        }
     }
 }
