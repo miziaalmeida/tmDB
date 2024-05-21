@@ -57,6 +57,8 @@ struct Text {
     struct Error {
         static let googleError = "Error signing in with Google: "
         static let googleSignInError = "GoogleSignInError"
-        static let googleLoginFail = NSLocalizedString("Falha ao fazer login com o Google", comment:"Localizable")
+        static let googleLoginFail = NSLocalizedString("Failed to sign in with Google.", comment:"Localizable")
+        static let loginError = "Login Error"
+        static let confirm = "OK"
     }
 }

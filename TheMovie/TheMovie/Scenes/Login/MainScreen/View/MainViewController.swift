@@ -95,6 +95,12 @@ class MainViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    private func errorAlert(message: String) {
+        let alertController = UIAlertController(title: Text.Error.loginError, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: Text.Error.confirm, style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     @objc func btnGoogleSingInDidTap(_ sender: Any) {
         viewModel.loginWithGoogle(presentingViewController: self) { [weak self] user, error in
             guard let self = self else { return }
