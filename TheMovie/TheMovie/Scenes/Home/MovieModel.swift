@@ -11,18 +11,19 @@ struct Movie: Codable {
     let id: Int
     let title: String
     let overview: String
-    let releaseDate: String
     let posterPath: String?
     
     enum CodingKeys: String, CodingKey {
         case id
         case title
         case overview
-        case releaseDate = "release_date"
         case posterPath = "poster_path"
     }
 }
 
-struct MovieResponse: Codable {
+struct MovieResponse: Decodable {
+    let page: Int
     let results: [Movie]
+    let total_pages: Int
+    let total_results: Int
 }
