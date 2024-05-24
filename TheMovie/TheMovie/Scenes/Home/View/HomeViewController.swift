@@ -81,6 +81,7 @@ class HomeViewController: UIViewController {
     
     func showMovieDetails(movie: Movie) {
         print("Filme: \(movie.title)")
+        print("Detalhe: \(movie.overview)")
         movieDetailView.configure(with: movie)
         movieDetailView.isHidden = false
     }

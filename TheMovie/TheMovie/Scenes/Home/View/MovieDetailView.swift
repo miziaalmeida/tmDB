@@ -22,10 +22,24 @@ class MovieDetailView: UIView {
         return label
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
+    }
+    
     private func setupView() {
         backgroundColor = ColorConstants.backColor
         addSubview(titleLabel)
         addSubview(overviewLabel)
+    }
+    
+    private func setupConstraint() {
+        
     }
     
     func configure(with movie: Movie) {
