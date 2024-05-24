@@ -11,13 +11,15 @@ class HomeViewController: UIViewController {
     
     private let apiManager = APIManager()
     private var movies: [Movie] = []
-    var tableView = UITableView()
+    private var tableView = UITableView()
+    private var movieDetailView = MovieDetailView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColorConstants.backColor
         navigationController?.setNavigationBarHidden(true, animated: true)
-        setupTableView()
+        setupViewHierarchy()
         fetchPopularMovies()
     }
     
@@ -28,6 +30,30 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(tableView)
+    }
+    
+    private func setupMovieDetail() {
+        movieDetailView.translatesAutoresizingMaskIntoConstraints = false
+        movieDetailView.isHidden = true
+        view.addSubview(movieDetailView)
+        
+        NSLayoutConstraint.activate([
+            movieDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            movieDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            movieDetailView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideMovieDetail))
+        movieDetailView.addGestureRecognizer(tapGesture)
+    }
+    
+    private func setupViewHierarchy() {
+        setupTableView()
+        setupMovieDetail()
+    }
+    
+    private func setupConstraints() {
+
     }
     
     private func fetchPopularMovies() {
@@ -55,6 +81,12 @@ class HomeViewController: UIViewController {
     
     func showMovieDetails(movie: Movie) {
         print("Filme: \(movie.title)")
+        movieDetailView.configure(with: movie)
+        movieDetailView.isHidden = false
+    }
+    
+    @objc func hideMovieDetail() {
+        movieDetailView.isHidden = true
     }
 }
 
