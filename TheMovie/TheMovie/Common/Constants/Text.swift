@@ -60,5 +60,8 @@ struct Text {
         static let googleLoginFail = NSLocalizedString("Failed to sign in with Google.", comment:"Localizable")
         static let loginError = "Login Error"
         static let confirm = "OK"
+        static let requestError = "HTTP Request Failed "
+        static let dataRecieve = "No data received"
+        static let jsonError = "Failed to decode JSON: "
     }
 }
