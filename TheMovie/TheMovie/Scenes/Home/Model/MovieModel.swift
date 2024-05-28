@@ -7,6 +7,13 @@
 
 import Foundation
 
+struct MovieResponse: Decodable {
+    let page: Int
+    let results: [Movie]
+    let total_pages: Int
+    let total_results: Int
+}
+
 struct Movie: Codable {
     let id: Int
     let title: String
@@ -19,11 +26,4 @@ struct Movie: Codable {
         case overview
         case posterPath = "poster_path"
     }
-}
-
-struct MovieResponse: Decodable {
-    let page: Int
-    let results: [Movie]
-    let total_pages: Int
-    let total_results: Int
 }
